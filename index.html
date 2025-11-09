@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSELIA - Posyandu Digital</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add this after your existing script tags -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    
+    <link rel="stylesheet" href="ss.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+            <div class="container-fluid" style="margin: auto 2%;">
+                <a class="navbar-brand" href="index.html">
+                    <img src="img/Logo.png" alt="POSELIA" style="height: 50px; width: auto;">
+                    POSELIA
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="navTentang">Tentang POSELIA</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navPengetahuan" role="button" data-bs-toggle="dropdown">
+                                Pengetahuan Ibu
+                            </a>                        
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">KIA (Kesehatan Ibu dan Anak)</a></li>
+                                <li><a class="dropdown-item" href="#">KB (Keluarga Berencana)</a></li>
+                                <li><a class="dropdown-item" href="#">Imunisasi</a></li>
+                                <li><a class="dropdown-item" href="#">Penyakit Menular dan Tidak Menular</a></li>
+                                <li><a class="dropdown-item" href="#">PHBS (Perilaku Hidup Bersih dan Sehat)</a></li>
+                                <li><a class="dropdown-item" href="#">Gizi Seimbang</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="navUserLink">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+            <!-- Homepage -->
+        <div id="homepage" class="fade-section active">
+            <!-- Hero Section -->
+            <section class="hero-section">
+                <div class="container">
+                    <a href="#" class="btn btn-light btn-lg mt-3" id="learnMoreBtn">Pelajari Lebih Lanjut</a>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section class="py-5" id="aboutSection">
+                <div class="container">
+                    <h2 class="section-title text-center">Tentang POSELIA</h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>
+                                POSELIA (Posyandu Elektrik Ibu dan Anak) adalah aplikasi digital yang dikembangkan untuk mendukung transformasi layanan Posyandu menuju era digital. POSELIA hadir sebagai sahabat kader dan keluarga dalam mempermudah pencatatan, pemantauan, serta edukasi kesehatan ibu dan anak secara terpadu.
+                            </p>
+                            <p>
+                                Melalui POSELIA, kader Posyandu dapat melakukan pencatatan pemeriksaan dengan lebih cepat dan akurat, mulai dari data kehamilan, tumbuh kembang balita, hingga imunisasi. Semua data tersimpan secara elektronik dan dapat diakses kapan saja, sehingga meningkatkan efisiensi dan akurasi dalam pelayanan.
+                            </p>
+                            <p>
+                                Bagi masyarakat, POSELIA menyediakan berbagai materi edukasi kesehatan yang mudah dibaca dan dipahami, mencakup topik gizi, tumbuh kembang anak, kesehatan ibu hamil, dan perawatan pasca persalinan. 
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <img src="img/about.jpeg" alt="Ibu dan Anak" class="img-fluid rounded">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section class="py-5 bg-light">
+                <div class="container">
+                    <h2 class="section-title text-center">What's News</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body text-center p-4">
+                                    <div class="feature-icon">
+                                        <img src="img/baby.jpeg" alt="Icon Data Balita" class="img-fluid" style="max-height: 100px;">
+                                    </div>
+                                    <h5 class="card-title">Data Balita</h5>
+                                    <p class="card-text">Kelola data balita secara digital dengan pencatatan perkembangan yang terstruktur.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body text-center p-4">
+                                    <div class="feature-icon">
+                                        <img src="img/bumil.jpeg" alt="Icon Data Ibu Hamil" class="img-fluid" style="max-height: 100px;">
+                                    </div>
+                                    <h5 class="card-title">Data Ibu Hamil</h5>
+                                    <p class="card-text">Pantau kesehatan ibu hamil dengan pencatatan pemeriksaan rutin yang lengkap.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body text-center p-4">
+                                    <div class="feature-icon">
+                                        <img src="img/report.jpeg" alt="Icon Laporan Digital" class="img-fluid" style="max-height: 100px;">
+                                    </div>
+                                    <h5 class="card-title">Laporan Digital</h5>
+                                    <p class="card-text">Hasilkan laporan dalam bentuk tabel dan PDF untuk kebutuhan administrasi.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Knowledge Section -->
+            <section class="py-5">
+                <div class="container">
+                    <h2 class="section-title text-center">Pengetahuan Ibu</h2>
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">KIA (Kesehatan Ibu dan Anak)</h5>
+                                    <p class="card-text">Informasi lengkap tentang kesehatan ibu dan anak dari masa kehamilan hingga tumbuh kembang balita.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">KB (Keluarga Berencana)</h5>
+                                    <p class="card-text">Panduan tentang metode keluarga berencana untuk perencanaan keluarga yang sehat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">Imunisasi</h5>
+                                    <p class="card-text">Jadwal dan informasi penting tentang imunisasi untuk melindungi anak dari penyakit.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">Penyakit Menular dan Tidak Menular</h5>
+                                    <p class="card-text">Edukasi tentang pencegahan dan penanganan berbagai jenis penyakit.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">PHBS (Perilaku Hidup Bersih dan Sehat)</h5>
+                                    <p class="card-text">Panduan praktis menerapkan perilaku hidup bersih dan sehat dalam keluarga.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body p-4">
+                                    <h5 class="card-title">Gizi Seimbang</h5>
+                                    <p class="card-text">Informasi tentang pola makan dan gizi seimbang untuk ibu hamil dan anak.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Pengetahuan Ibu Detail -->
+        <div id="pengetahuanDetail" class="hidden fade-section">
+            <div class="container py-5">
+            <h2 id="detailTitle" class="section-title text-center"></h2>
+            <div id="detailContent" class="mt-4"></div>
+            <div class="text-center mt-4">
+                <button class="btn btn-primary" id="backToPengetahuan">Kembali</button>
+            </div>
+            </div>
+        </div>
+    
+        <!-- Login Section -->
+        <div id="loginSection" class="hidden">
+            <div class="container">
+                <div class="login-container">
+                    <h2 class="text-center mb-4">Masuk ke POSELIA</h2>
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" required autocomplete="current-password">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Dashboard Section -->
+        <div id="dashboardSection" class="hidden">
+            <!-- Dashboard Layout -->
+            <div class="dashboard-layout">   
+            <!-- Sidebar -->
+            <div class="sidebar bg-dark text-white">
+                <div class="p-3 d-flex flex-column h-100">
+                <!-- Header with Toggle -->
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h4 class="fw-bold mb-0">POSELIA</h4>
+                    <button id="sidebarToggle" class="btn btn-outline-light btn-sm">
+                        <i class="bi bi-list"></i>
+                    </button>
+                </div>
+        
+                <!-- Navigation -->
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2">
+                    <a class="nav-link text-white active" href="#" data-section="dashboardOverview">
+                        <i class="bi bi-speedometer2 me-2"></i><span>Dashboard</span>
+                    </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                    <a class="nav-link text-white" href="#" data-section="dataBalita">
+                        <i class="fas fa-baby me-2"></i><span>Data Balita</span>
+                    </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                    <a class="nav-link text-white" href="#" data-section="dataIbuHamil">
+                        <i class="fas fa-female me-2"></i><span>Data Ibu Hamil</span>
+                    </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                    <a class="nav-link text-white" href="#" data-section="pemantauanBalita">
+                        <i class="fas fa-heartbeat me-2"></i><span>Pemantauan Balita</span>
+                    </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                    <a class="nav-link text-white" href="#" data-section="pemantauanIbuHamil">
+                        <i class="fas fa-stethoscope me-2"></i><span>Pemantauan Ibu Hamil</span>
+                    </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                    <a class="nav-link text-white" href="#" data-section="laporan">
+                        <i class="fas fa-download me-2"></i><span>Download Laporan</span>
+                    </a>
+                    </li>
+                </ul>
+        
+                <!-- Logout -->
+                <div class="mt-auto">
+                    <a class="nav-link text-warning" href="#" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt me-2"></i><span>Logout</span>
+                    </a>                      
+                </div>
+                </div>
+            </div>
+        
+            <!-- Main Content -->
+            <div class="main-dashboard-content p-4">
+                <!-- Dashboard Overview -->
+                <div id="dashboardOverview">
+                    <h2 class="mb-4">Overview Data</h2>
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-3">
+                            <div class="card dashboard-card bg-primary text-white">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5 class="card-title">Data Balita</h5>
+                                            <h2 class="mb-0">0</h2>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <i class="fas fa-baby fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card dashboard-card bg-success text-white">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5 class="card-title">Data Ibu Hamil</h5>
+                                            <h2 class="mb-0">0</h2>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <i class="fas fa-female fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card dashboard-card bg-info text-white">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5 class="card-title">Pemantauan Balita</h5>
+                                            <h2 class="mb-0">0</h2>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <i class="fas fa-heartbeat fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card dashboard-card bg-warning text-dark">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between">
+                                        <div>
+                                            <h5 class="card-title">Pemantauan Ibu Hamil</h5>
+                                            <h2 class="mb-0">0</h2>
+                                        </div>
+                                        <div class="align-self-center">
+                                            <i class="fas fa-stethoscope fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    <h5 class="mb-0">Data Balita Terbaru</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>Umur</th>
+                                                <th>BB/TB</th>
+                                                <th>Status</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="dashboardBalitaTableBody"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header bg-success text-white">
+                                    <h5 class="mb-0">Data Ibu Hamil Terbaru</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                            <tr>
+                                                <th>Nama</th>
+                                                <th>Usia Kandungan</th>
+                                                <th>Tekanan Darah</th>
+                                                <th>Status</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody id="dashboardIbuHamilTableBody"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Balita Section -->
+                <div id="dataBalita" class="hidden">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Data Balita</h2>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahBalitaModal">
+                            <i class="fas fa-plus me-2"></i>Tambah Data Balita
+                        </button>
+                    </div>
+                    
+                    <div class="card data-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Nama Balita</th>
+                                        <th>NIK</th>
+                                        <th>Tanggal Lahir</th>
+                                        <th>Umur</th>
+                                        <th>Nama Orang Tua</th>
+                                        <th>Alamat</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="balitaTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Ibu Hamil Section -->
+                <div id="dataIbuHamil" class="hidden">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Data Ibu Hamil</h2>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahIbuHamilModal">
+                            <i class="fas fa-plus me-2"></i>Tambah Data Ibu Hamil
+                        </button>
+                    </div>
+                    
+                    <div class="card data-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Nama Ibu Hamil</th>
+                                        <th>NIK</th>
+                                        <th>Tanggal Lahir</th>
+                                        <th>Umur</th>
+                                        <th>Alamat</th>
+                                        <th>No. HP</th>
+                                        <th>Pendidikan</th>
+                                        <th>Pekerjaan</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="ibuHamilTableBody"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pemantauan Balita Section -->
+                <div id="pemantauanBalita" class="hidden">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Pemantauan Rutin Balita</h2>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahPemantauanBalitaModal">
+                            <i class="fas fa-plus me-2"></i>Tambah Pemantauan
+                        </button>
+                    </div>
+                    
+                    <div class="card data-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Tanggal Pemantauan</th>
+                                        <th>Nama Balita</th>
+                                        <th>BB (kg)</th>
+                                        <th>TB Lahir (cm)</th>
+                                        <th>LK (cm)</th>
+                                        <th>LLA (cm)</th>
+                                        <th>Status Gizi</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="pemantauanBalitaTableBody"></tbody>
+                                </table>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pemantauan Ibu Hamil Section -->
+                <div id="pemantauanIbuHamil" class="hidden">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h2>Pemantauan Rutin Ibu Hamil</h2>
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tambahPemantauanIbuHamilModal">
+                            <i class="fas fa-plus me-2"></i>Tambah Pemantauan
+                        </button>
+                    </div>
+                    
+                    <div class="card data-table">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Tanggal Kunjungan</th>
+                                        <th>Nama Ibu Hamil</th>
+                                        <th>Usia Kehamilan (minggu)</th>
+                                        <th>Tekanan Darah</th>
+                                        <th>BB Ibu (kg)</th>
+                                        <th>Keluhan</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="pemantauanIbuHamilTableBody"></tbody>
+                                </table>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laporan Section -->
+                <div id="laporan" class="hidden">
+                    <h2 class="mb-4">Download Laporan</h2>
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                                    <h5 class="card-title">Laporan Data Balita</h5>
+                                    <p class="card-text">Unduh laporan data balita dalam format PDF</p>
+                                    <button class="btn btn-danger">
+                                        <i class="fas fa-download me-2"></i>Download PDF
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-file-excel fa-3x text-success mb-3"></i>
+                                    <h5 class="card-title">Laporan Data Ibu Hamil</h5>
+                                    <p class="card-text">Unduh laporan data ibu hamil dalam format Excel</p>
+                                    <button class="btn btn-success">
+                                        <i class="fas fa-download me-2"></i>Download Excel
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-chart-bar fa-3x text-primary mb-3"></i>
+                                    <h5 class="card-title">Laporan Pemantauan Balita</h5>
+                                    <p class="card-text">Unduh laporan pemantauan balita dengan grafik</p>
+                                    <button class="btn btn-primary">
+                                        <i class="fas fa-download me-2"></i>Download Laporan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body text-center p-4">
+                                    <i class="fas fa-chart-line fa-3x text-info mb-3"></i>
+                                    <h5 class="card-title">Laporan Pemantauan Ibu Hamil</h5>
+                                    <p class="card-text">Unduh laporan pemantauan ibu hamil dengan analisis</p>
+                                    <button class="btn btn-info text-white">
+                                        <i class="fas fa-download me-2"></i>Download Laporan
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            </div>
+        </div>
+  
+    </main>
+
+    <!-- Footer -->
+    <footer id="globalFooter">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6">
+              <h5>POSELIA</h5>
+              <p>Platform digital untuk memantau kesehatan ibu dan anak di posyandu.</p>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <h5>Kontak</h5>
+              <p>Email: malihahramadhani@uima.ac.id</p>
+              <p>Alamat: Gedung HZ UIMA, Jl. Harapan No.50, RT.2/RW.7, Lenteng Agung, Kec. Jagakarsa, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 1261</p>
+            </div>
+            <div class="col-lg-4 col-md-6">
+              <h5>Tautan Cepat</h5>
+              <ul class="list-unstyled">
+                <li><a href="#" class="text-white">Tentang POSELIA</a></li>
+                <li><a href="#" class="text-white">Pengetahuan Ibu</a></li>
+                <li><a href="#" class="text-white">Login</a></li>
+              </ul>
+            </div>
+          </div>
+          <hr class="my-4">
+          <div class="text-center">
+            <p>&copy; 2025 POSELIA. All rights reserved.</p>
+          </div>
+        </div>
+    </footer>
+
+    <!-- Modal Tambah Balita -->
+    <div class="modal fade" id="tambahBalitaModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Data Balita</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formTambahBalita">
+                        <div class="mb-3">
+                            <label for="namaBalita" class="form-label">Nama Balita</label>
+                            <input type="text" class="form-control" id="namaBalita" name="namaBalita" required>
+                        </div>
+                
+                        <div class="mb-3">
+                            <label for="nikBalita" class="form-label">NIK</label>
+                            <input type="text" class="form-control" id="nikBalita" name="nikBalita" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="tanggalLahirBalita" class="form-label">Tanggal Lahir</label>
+                            <input type="date" class="form-control" id="tanggalLahirBalita" name="tanggalLahirBalita" required>
+                        </div>
+                
+                        <div class="mb-3">
+                            <label for="jenisKelaminBalita" class="form-label">Jenis Kelamin</label>
+                            <select class="form-select" id="jenisKelaminBalita" name="jenisKelaminBalita" required>
+                                <option value="" selected disabled>Pilih...</option>
+                                <option value="Laki-laki">Laki-laki</option>
+                                <option value="Perempuan">Perempuan</option>
+                            </select>
+                        </div>
+                
+                        <div class="mb-3">
+                            <label for="bbLahirBalita" class="form-label">BB Lahir (gram)</label>
+                            <input type="number" class="form-control" id="bbLahirBalita" name="bbLahirBalita" placeholder="Contoh: 3200" required>
+                        </div>
+                
+                        <div class="mb-3">
+                            <label for="tbLahirBalita" class="form-label">TB Lahir (cm)</label>
+                            <input type="number" class="form-control" id="tbLahirBalita" name="tbLahirBalita" placeholder="Contoh: 50" required>
+                        </div>
+                
+                        <div class="mb-3">
+                            <label for="namaOrtuBalita" class="form-label">Nama Orang Tua</label>
+                            <input type="text" class="form-control" id="namaOrtuBalita" name="namaOrtuBalita" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="alamatBalita" class="form-label">Alamat</label>
+                            <textarea class="form-control" id="alamatBalita" name="alamatBalita" rows="3" required></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="saveBalita">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Balita -->
+    <div class="modal fade" id="editBalitaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Data Balita</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Nama Balita</label>
+                  <input id="editNamaBalita" class="form-control" type="text">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">NIK</label>
+                  <input id="editNikBalita" class="form-control" type="text">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Tanggal Lahir</label>
+                  <input id="editTanggalLahirBalita" class="form-control" type="date">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Jenis Kelamin</label>
+                  <select id="editJenisKelaminBalita" class="form-select">
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">BB Lahir (kg)</label>
+                  <input id="editBbLahirBalita" class="form-control" type="number" step="0.1">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">TB Lahir (cm)</label>
+                  <input id="editTbLahirBalita" class="form-control" type="number" step="0.1">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Nama Orangtua</label>
+                  <input id="editNamaOrtuBalita" class="form-control" type="text">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Alamat</label>
+                  <input id="editAlamatBalita" class="form-control" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button id="saveEditBalita" class="btn btn-primary">Simpan Perubahan</button>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <!-- Modal Tambah Ibu Hamil -->
+    <div class="modal fade" id="tambahIbuHamilModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Data Ibu Hamil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formTambahIbuHamil">
+                        <div class="mb-3">
+                            <label for="namaIbuHamil" class="form-label">Nama Ibu Hamil</label>
+                            <input type="text" class="form-control" id="namaIbuHamil" name="namaIbuHamil" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nikIbuHamil" class="form-label">NIK</label>
+                            <input type="text" class="form-control" id="nikIbuHamil" name="nikIbuHamil" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggalLahirIbuHamil" class="form-label">Tanggal Lahir</label>
+                            <input type="date" class="form-control" id="tanggalLahirIbuHamil" name="tanggalLahirIbuHamil" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="alamatIbuHamil" class="form-label">Alamat</label>
+                            <textarea class="form-control" id="alamatIbuHamil" name="alamatIbuHamil" rows="3" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="noHpIbuHamil" class="form-label">No. HP</label>
+                            <input type="text" class="form-control" id="noHpIbuHamil" name="noHpIbuHamil" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pendidikanIbuHamil" class="form-label">Pendidikan</label>
+                            <select class="form-select" id="pendidikanIbuHamil" name="pendidikanIbuHamil" required>
+                                <option value="" selected disabled>Pilih...</option>
+                                <option>SD</option>
+                                <option>SMP</option>
+                                <option>SMA</option>
+                                <option>D3</option>
+                                <option>S1</option>
+                                <option>S2/S3</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="pekerjaanIbuHamil" class="form-label">Pekerjaan</label>
+                            <input type="text" class="form-control" id="pekerjaanIbuHamil" name="pekerjaanIbuHamil" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="saveIbuHamil">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Ibu Hamil -->
+    <div class="modal fade" id="editIbuHamilModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Data Ibu Hamil</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Nama Ibu</label>
+                  <input id="editNamaIbuHamil" class="form-control" type="text">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">NIK</label>
+                  <input id="editNikIbuHamil" class="form-control" type="text">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Tanggal Lahir</label>
+                  <input id="editTanggalLahirIbuHamil" class="form-control" type="date">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Alamat</label>
+                  <input id="editAlamatIbuHamil" class="form-control" type="text">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">No HP</label>
+                  <input id="editNoHpIbuHamil" class="form-control" type="text">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Pendidikan</label>
+                  <input id="editPendidikanIbuHamil" class="form-control" type="text">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Pekerjaan</label>
+                  <input id="editPekerjaanIbuHamil" class="form-control" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button id="saveEditIbuHamil" class="btn btn-primary">Simpan Perubahan</button>
+            </div>
+          </div>
+        </div>
+    </div>
+      
+    <!-- Modal Tambah Pemantauan Balita -->
+    <div class="modal fade" id="tambahPemantauanBalitaModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Pemantauan Balita</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formTambahPemantauanBalita">
+                        <div class="mb-3">
+                            <label for="balitaSelect" class="form-label">Nama Balita</label>
+                            <select class="form-select" id="balitaSelect" name="balitaSelect" required>
+                                <option value="" selected disabled>Pilih Balita...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggalPemantauanBalita" class="form-label">Tanggal Pemantauan</label>
+                            <input type="date" class="form-control" id="tanggalPemantauanBalita" name="tanggalPemantauanBalita" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="beratBadanBalita" class="form-label">Berat Badan (kg)</label>
+                                <input type="number" step="0.1" class="form-control" id="beratBadanBalita" name="beratBadanBalita" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="tinggiBadanBalita" class="form-label">Tinggi Badan (cm)</label>
+                                <input type="number" step="0.1" class="form-control" id="tinggiBadanBalita" name="tinggiBadanBalita" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="lingkarKepalaBalita" class="form-label">Lingkar Kepala (cm)</label>
+                                <input type="number" step="0.1" class="form-control" id="lingkarKepalaBalita" name="lingkarKepalaBalita" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lingkarLenganBalita" class="form-label">Lingkar Lengan Atas (cm)</label>
+                                <input type="number" step="0.1" class="form-control" id="lingkarLenganBalita" name="lingkarLenganBalita" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="catatanBalita" class="form-label">Catatan</label>
+                            <textarea class="form-control" id="catatanBalita" name="catatanBalita" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="savePemantauanBalita">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Pemantauan Balita -->
+    <div class="modal fade" id="editPemantauanBalitaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Pemantauan Balita</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row g-3">
+                <div class="col-6">
+                  <label class="form-label">Tanggal</label>
+                  <input id="editTanggalPemBalita" class="form-control" type="date">
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Nama Balita</label>
+                  <input id="editNamaBalitaPem" class="form-control" type="text">
+                </div>
+                <div class="col-6">
+                  <label class="form-label">BB (kg)</label>
+                  <input id="editBbPemBalita" class="form-control" type="number" step="0.1">
+                </div>
+                <div class="col-6">
+                  <label class="form-label">TB (cm)</label>
+                  <input id="editTbPemBalita" class="form-control" type="number" step="0.1">
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Lingkar Kepala</label>
+                  <input id="editLkPemBalita" class="form-control" type="number">
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Lingkar Lengan</label>
+                  <input id="editLlaPemBalita" class="form-control" type="number">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Status Gizi</label>
+                  <input id="editStatusGiziPemBalita" class="form-control" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button id="saveEditPemantauanBalita" class="btn btn-primary">Simpan Perubahan</button>
+            </div>
+          </div>
+        </div>
+    </div>
+      
+
+    <!-- Modal Tambah Pemantauan Ibu Hamil -->
+    <div class="modal fade" id="tambahPemantauanIbuHamilModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tambah Pemantauan Ibu Hamil</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formTambahPemantauanIbuHamil">
+                        <div class="mb-3">
+                            <label for="ibuHamilSelect" class="form-label">Nama Ibu Hamil</label>
+                            <select class="form-select" id="ibuHamilSelect" name="ibuHamilSelect" required>
+                                <option value="" selected disabled>Pilih Ibu Hamil...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggalPemantauanIbuHamil" class="form-label">Tanggal Kunjungan</label>
+                            <input type="date" class="form-control" id="tanggalPemantauanIbuHamil" name="tanggalPemantauanIbuHamil" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="usiaKehamilanIbuHamil" class="form-label">Usia Kehamilan (minggu)</label>
+                                <input type="number" class="form-control" id="usiaKehamilanIbuHamil" name="usiaKehamilanIbuHamil" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="beratBadanIbuHamil" class="form-label">Berat Badan Ibu (kg)</label>
+                                <input type="number" step="0.1" class="form-control" id="beratBadanIbuHamil" name="beratBadanIbuHamil" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="tekananDarahIbuHamil" class="form-label">Tekanan Darah</label>
+                                <input type="text" class="form-control" id="tekananDarahIbuHamil" name="tekananDarahIbuHamil" placeholder="120/80" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="tinggiFundusIbuHamil" class="form-label">Tinggi Fundus Uteri (cm)</label>
+                                <input type="number" class="form-control" id="tinggiFundusIbuHamil" name="tinggiFundusIbuHamil" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="keluhanIbuHamil" class="form-label">Keluhan</label>
+                            <textarea class="form-control" id="keluhanIbuHamil" name="keluhanIbuHamil" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="savePemantauanIbuHamil">Simpan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Edit Pemantauan Ibu Hamil -->
+    <div class="modal fade" id="editPemantauanIbuHamilModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit Pemantauan Ibu Hamil</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row g-3">
+                <div class="col-6">
+                  <label class="form-label">Tanggal Kunjungan</label>
+                  <input id="editTanggalKunjungan" class="form-control" type="date">
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Nama Ibu</label>
+                  <input id="editNamaIbuPem" class="form-control" type="text">
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Usia Kehamilan (minggu)</label>
+                  <input id="editUsiaKehamilan" class="form-control" type="number">
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Tekanan Darah</label>
+                  <input id="editTekananDarah" class="form-control" type="text">
+                </div>
+                <div class="col-6">
+                  <label class="form-label">BB (kg)</label>
+                  <input id="editBbPemIbu" class="form-control" type="number" step="0.1">
+                </div>
+                <div class="col-6">
+                  <label class="form-label">Keluhan</label>
+                  <input id="editKeluhan" class="form-control" type="text">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Status</label>
+                  <input id="editStatusPemIbu" class="form-control" type="text">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+              <button id="saveEditPemantauanIbuHamil" class="btn btn-primary">Simpan Perubahan</button>
+            </div>
+          </div>
+        </div>
+    </div>
+      
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
