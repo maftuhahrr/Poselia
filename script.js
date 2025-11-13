@@ -1116,12 +1116,25 @@ async function getUserName(uid) {
 // --- Initialization (single-run) ---
 let appInitialized = false;
 document.addEventListener('DOMContentLoaded', () => {
+  const navbarCollapse = document.getElementById("navbarNav");
+  const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
+
+  if (window.innerWidth < 992 && navbarCollapse.classList.contains("show")) {
+    bsCollapse.hide();
+  }
+
   if (window.appInitialized) return; // prevent double init
   window.appInitialized = true;
 
   // === Hide footer when dashboard is visible ===
   const footer = document.getElementById("globalFooter");
   const dashboardSection = document.getElementById("dashboardSection");
+
+  document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth < 992) bsCollapse.hide();
+    });
+  });
 
   function updateFooterVisibility() {
     if (!footer || !dashboardSection) return;
@@ -1333,6 +1346,62 @@ document.getElementById("loginForm").addEventListener("submit", async (e) => {
   // Initial UI state
   updateNavbarUserDisplay();
 }
+
+// === GENERATE PDF ===
+async function downloadPDFBalita() {
+  if (!dataStore.balita.length) {
+    alert("Tidak ada data balita untuk diunduh.");
+    return;
+  }
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+  doc.setFontSize(16);
+  doc.text("Laporan Data Balita - POSELIA", 14, 15);
+  doc.setFontSize(12);
+
+  let y = 25;
+  dataStore.balita.forEach((b, i) => {
+    doc.text(`${i + 1}. ${b.nama || "-"} (${b.nik || "-"})`, 14, y);
+    y += 6;
+    doc.text(`   Umur: ${getAge(b.tanggalLahir)} th | Alamat: ${b.alamat || "-"}`, 14, y);
+    y += 8;
+    if (y > 270) { doc.addPage(); y = 20; }
+  });
+
+  doc.save("laporan_balita.pdf");
+}
+
+// === GENERATE EXCEL ===
+async function downloadExcelIbuHamil() {
+  if (!dataStore.ibuHamil.length) {
+    alert("Tidak ada data ibu hamil untuk diunduh.");
+    return;
+  }
+
+  const wsData = [
+    ["Nama", "NIK", "Tanggal Lahir", "Umur", "Alamat", "No HP", "Pendidikan", "Pekerjaan"]
+  ];
+
+  dataStore.ibuHamil.forEach(i => {
+    wsData.push([
+      i.nama || "-",
+      i.nik || "-",
+      i.tanggalLahir || "-",
+      getAge(i.tanggalLahir) + " th",
+      i.alamat || "-",
+      i.noHp || "-",
+      i.pendidikan || "-",
+      i.pekerjaan || "-"
+    ]);
+  });
+
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+  XLSX.utils.book_append_sheet(wb, ws, "Data Ibu Hamil");
+  XLSX.writeFile(wb, "laporan_ibu_hamil.xlsx");
+}
+
 
 // Expose some helpers to window (optional, for debugging)
 window.refreshAllTables = refreshAllTables;
